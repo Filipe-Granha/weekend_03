@@ -1,3 +1,6 @@
+# this is one of the class files, where we create the SQL CRUD commands that will connect with the Database in the form of methods
+
+
 require ('../db/sql_runner')
 require_relative ('customer')
 require_relative ('film')
@@ -18,7 +21,7 @@ class Ticket
 
 
 
- def save()
+ def save() # it's applied in the console file, saving each object directly into the table
    sql = "INSERT INTO tickets (customer_id, film_id) VALUES ('#{@customer_id}', '#{@film_id}') RETURNING id;"
    ticket = SqlRunner.run(sql).first
    @id = ticket['id'].to_i
@@ -36,7 +39,7 @@ class Ticket
 
 
 
- def self.all()
+ def self.all() # working in terminal - console
    sql = "SELECT * FROM tickets;"
    return self.get_many(sql)
  end
@@ -52,11 +55,35 @@ class Ticket
 
 
 
+ def delete()
+   sql = "DELETE FROM tickets WHERE id = #{@id};"
+   SqlRunner.run(sql)
+ end
+
+
+
+
+ def film()
+   sql = "SELECT * FROM films WHERE id = #{@film_id}"
+   film = SqlRunner.run(sql).first
+   return Film.new(film)
+ end  
+
+
+
+
+ def customer()
+   sql = "SELECT * FROM customers WHERE id = #{@customer_id}"
+   customer = SqlRunner.run(sql).first
+   return Customer.new(customer)
+ end  
+
+
 
 
  def self.get_many(sql)
-   films = SqlRunner.run(sql)
-   result = films.map { |film| Film.new(film) }
+   tickets = SqlRunner.run(sql)
+   result = tickets.map { |ticket| Ticket.new(ticket) }
    return result
  end
 

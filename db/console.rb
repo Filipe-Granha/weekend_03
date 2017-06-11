@@ -5,13 +5,18 @@ require_relative('../models/ticket')
 
 
 
+Ticket.delete_all()
+Customer.delete_all()
+Film.delete_all()
+
+
 
 
 customer1 = Customer.new ({
   'name' => 'Tony',
-  'funds' => '10'
+  'funds' => '20'
   })
-customer1.save()
+customer1.save() # saves objects to the table
 customer2 = Customer.new ({
   'name' => 'Zsolt',
   'funds' => '20'
@@ -19,7 +24,7 @@ customer2 = Customer.new ({
 customer2.save()
 customer3 = Customer.new ({
   'name' => 'Sandy',
-  'funds' => '10'
+  'funds' => '20'
   })
 customer3.save()
 customer4 = Customer.new ({
