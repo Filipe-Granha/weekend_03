@@ -29,17 +29,17 @@ class Ticket
 
 
 
-
- def update()
-   sql = "UPDATE tickets SET (customer_id, film_id) = ('#{@customer_id}', '#{@film_id}') WHERE id = #{@id};"
-   SqlRunner.run(sql)
- end
-
-
+# UPDATE METHOD --> wouldn't make sense using it, since we can't change the foreign keys from the customer_id and film_id
+ # def update()
+ #   sql = "UPDATE tickets SET (customer_id, film_id) = ('#{@customer_id}', '#{@film_id}') WHERE id = #{@id};"
+ #   SqlRunner.run(sql)
+ # end
 
 
 
- def self.all() # working in terminal - console
+
+
+ def self.all() # working in terminal - console (eg.: Ticket.all)
    sql = "SELECT * FROM tickets;"
    return self.get_many(sql)
  end
@@ -47,7 +47,7 @@ class Ticket
 
 
 
- def self.delete_all()
+ def self.delete_all() # working in terminal - console (eg.: Ticket.delete_all)
    sql = "DELETE FROM tickets;"
    SqlRunner.run(sql)
  end
@@ -55,7 +55,7 @@ class Ticket
 
 
 
- def delete()
+ def delete() # working in terminal - console (eg.: ticket1.delete)
    sql = "DELETE FROM tickets WHERE id = #{@id};"
    SqlRunner.run(sql)
  end
@@ -63,7 +63,7 @@ class Ticket
 
 
 
- def film()
+ def film() # working in terminal - console (eg.: ticket1.film)
    sql = "SELECT * FROM films WHERE id = #{@film_id}"
    film = SqlRunner.run(sql).first
    return Film.new(film)
@@ -72,7 +72,7 @@ class Ticket
 
 
 
- def customer()
+ def customer() # working in terminal - console (eg.: ticket1.customer)
    sql = "SELECT * FROM customers WHERE id = #{@customer_id}"
    customer = SqlRunner.run(sql).first
    return Customer.new(customer)
@@ -81,7 +81,7 @@ class Ticket
 
 
 
- def self.get_many(sql)
+ def self.get_many(sql) # to be used inside other methods that return to us a collection of data we're looking for
    tickets = SqlRunner.run(sql)
    result = tickets.map { |ticket| Ticket.new(ticket) }
    return result

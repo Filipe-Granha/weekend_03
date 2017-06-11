@@ -46,7 +46,7 @@ class Customer
 
 
 
-  def self.delete_all()
+  def self.delete_all() # working in terminal - console (eg.: Customer.delete_all)
     sql = "DELETE FROM customers;"
     SqlRunner.run(sql)
   end
@@ -54,7 +54,7 @@ class Customer
 
 
 
-  def delete()
+  def delete() # working in terminal - console (eg.: customer1.delete)
     sql = "DELETE FROM customers WHERE id = #{@id};"
     SqlRunner.run(sql)
   end
@@ -71,19 +71,16 @@ class Customer
 
 
 
-
-  def self.find()
-    sql = "SELECT * FROM customers WHERE id = #{id}"
-    SqlRunner.run(sql)
-  end
-
-
+# FIND METHOD ---> not sure how to use it
+  # def find()
+  #   sql = "SELECT * FROM customers WHERE id = #{id}"
+  #   SqlRunner.run(sql)
+  # end
 
 
 
 
-
-  def self.get_many(sql)
+  def self.get_many(sql) # to be used inside other methods that return to us a collection of data we're looking for
     customers = SqlRunner.run(sql)
     result = customers.map { |customer| Customer.new(customer) }
     return result

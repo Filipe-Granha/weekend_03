@@ -14,7 +14,7 @@ class Film
 
  def initialize (options)
    @id = options['id'].to_i
-   @title = options['name']
+   @title = options['title']
    @price = options['price'].to_i
  end
 
@@ -30,7 +30,7 @@ class Film
 
 
 
- def update() # working in terminal - console
+ def update() # working in terminal - console (first step: film1.title="Top Gun"; second step: film1.update)
    sql = "UPDATE films SET (title, price) = ('#{@title}', '#{@price}') WHERE id = #{@id};"
    SqlRunner.run(sql)
  end
@@ -38,7 +38,7 @@ class Film
 
 
 
- def self.all() # working in terminal - console
+ def self.all() # working in terminal - console (eg.: Film.all)
    sql = "SELECT * FROM films;"
    return self.get_many(sql)
  end
@@ -46,7 +46,7 @@ class Film
 
 
 
- def self.delete_all()
+ def self.delete_all() # working in terminal - console (eg.: Film.delete_all)
    sql = "DELETE FROM films;"
    SqlRunner.run(sql)
  end
@@ -54,7 +54,7 @@ class Film
 
 
 
- def delete()
+ def delete() # working in terminal - console (eg.: film1.delete)
    sql = "DELETE FROM films WHERE id = #{@id};"
    SqlRunner.run(sql)
  end
@@ -72,7 +72,7 @@ class Film
 
 
 
- def self.get_many(sql)
+ def self.get_many(sql) # to be used inside other methods that return to us a collection of data we're looking for
    films = SqlRunner.run(sql)
    result = films.map { |film| Film.new(film) }
    return result
