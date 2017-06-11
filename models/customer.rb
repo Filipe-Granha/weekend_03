@@ -18,13 +18,45 @@ class Customer
 
 
 
-
   def save()
-      sql = "INSERT INTO customers (name, funds) VALUES ('#{@name}', '#{@funds}') RETURNING id;"
-      customer = SqlRunner.run(sql).first
-      @id = customer['id'].to_i
+    sql = "INSERT INTO customers (name, funds) VALUES ('#{@name}', '#{@funds}') RETURNING id;"
+    customer = SqlRunner.run(sql).first
+    @id = customer['id'].to_i
   end
 
+
+
+
+  def update()
+    sql = "UPDATE customers SET (name, funds) = ('#{@name}', '#{@funds}') WHERE id = #{@id};"
+    SqlRunner.run(sql)
+  end
+
+
+
+
+  def self.all()
+    sql = "SELECT * FROM customers;"
+    return self.get_many(sql)
+  end
+
+
+
+
+  def self.delete_all()
+    sql = "DELETE FROM customers;"
+    SqlRunner.run(sql)
+  end
+
+
+
+
+
+  def self.get_many(sql)
+    customers = SqlRunner.run(sql)
+    result = customers.map { |customer| Customer.new(customer) }
+    return result
+  end
 
 
 

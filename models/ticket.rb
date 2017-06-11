@@ -26,4 +26,39 @@ class Ticket
 
 
 
+
+ def update()
+   sql = "UPDATE tickets SET (customer_id, film_id) = ('#{@customer_id}', '#{@film_id}') WHERE id = #{@id};"
+   SqlRunner.run(sql)
+ end
+
+
+
+
+
+ def self.all()
+   sql = "SELECT * FROM tickets;"
+   return self.get_many(sql)
+ end
+
+
+
+
+ def self.delete_all()
+   sql = "DELETE FROM tickets;"
+   SqlRunner.run(sql)
+ end
+
+
+
+
+
+
+ def self.get_many(sql)
+   films = SqlRunner.run(sql)
+   result = films.map { |film| Film.new(film) }
+   return result
+ end
+
+
 end
