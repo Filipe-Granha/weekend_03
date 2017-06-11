@@ -5,6 +5,7 @@ require_relative('../models/ticket')
 
 
 
+
 Ticket.delete_all()
 Customer.delete_all()
 Film.delete_all()
@@ -38,22 +39,26 @@ customer4.save()
 
 film1 = Film.new ({
   'title' => 'Matrix',
-  'price' => '10'
+  'price' => '10',
+  'session' => '8:00'
   })
 film1.save()
 film2 = Film.new ({
   'title' => 'Commando',
-  'price' => '10'
+  'price' => '10',
+  'session' => '8:00'
   })
 film2.save()
 film3 = Film.new ({
   'title' => 'American Beauty',
-  'price' => '10'
+  'price' => '10',
+  'session' => '8:00'
   })
 film3.save()
 film4 = Film.new ({
   'title' => 'Interstellar',
-  'price' => '10'
+  'price' => '10',
+  'session' => '9:00'
   })
 film4.save()
 

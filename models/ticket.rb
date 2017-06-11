@@ -7,6 +7,7 @@ require_relative ('film')
 
 
 
+
 class Ticket
  attr_reader :id
  attr_accessor :customer_id, :film_id
@@ -29,12 +30,12 @@ class Ticket
 
 
 
+
 # UPDATE METHOD --> wouldn't make sense using it, since we can't change the foreign keys from the customer_id and film_id
  # def update()
  #   sql = "UPDATE tickets SET (customer_id, film_id) = ('#{@customer_id}', '#{@film_id}') WHERE id = #{@id};"
  #   SqlRunner.run(sql)
  # end
-
 
 
 
@@ -86,6 +87,8 @@ class Ticket
    result = tickets.map { |ticket| Ticket.new(ticket) }
    return result
  end
+
+
 
 
 end

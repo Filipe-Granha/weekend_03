@@ -13,7 +13,8 @@ CREATE TABLE customers (
 CREATE TABLE films (
   id SERIAL4 PRIMARY KEY,
   title VARCHAR(255),
-  price INT4
+  price INT4,
+  session VARCHAR(255)
 );
 
 CREATE TABLE tickets (
@@ -21,3 +22,4 @@ CREATE TABLE tickets (
   customer_id INT4 REFERENCES customers(id) ON DELETE CASCADE,
   film_id INT4 REFERENCES films(id) ON DELETE CASCADE
 );
+

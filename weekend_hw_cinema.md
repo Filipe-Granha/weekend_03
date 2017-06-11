@@ -23,9 +23,9 @@ It's enough if you can call your methods in pry, don't worry about an interface.
   B - and see which customers are coming to see one film.
 
 ### Basic extensions:
-  - Buying tickets should decrease the funds of the customer by the price
-  - Check how many tickets were bought by a customer
-  - Check how many customers are going to watch a certain film
+  C - Buying tickets should decrease the funds of the customer by the price
+  D - Check how many tickets were bought by a customer
+  E - Check how many customers are going to watch a certain film
 
 ### Advanced extensions:
   - Create a screenings table that lets us know what time films are showing
@@ -39,3 +39,7 @@ https://www.postgresql.org/docs/9.3/static/ddl-constraints.html
 
 A - eg.: customer1.films
 B - eg.: film1.customers
+C - eg.: customer1.update_funds (answer seen on Slack)
+D - eg.: customer1.number_of_tickets_bought
+E - eg.: film1.number_of_customers_watching
+
